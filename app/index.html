@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RYOT - HOME</title>
+    <link rel="stylesheet" href="./css/index.min.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/RYOT_2048x2048.jpg"
+      type="image/x-icon"
+    />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js");
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <a class="att" target="_blank" href="https://codepen.io/shubniggurath/pen/KwPwWZL"
+      >CodePen</a
+    >
+    <canvas></canvas>
+    <script src="./themes/winterv2/script.js"></script>
+    <section id="FullFrame">
+      <section class="mainContainer" id="main">
+        <div class="centerContainer">
+          <div class="container">
+            <img src="./assets/images/RYOT_PFP_2048x2048.png" alt="" />
+            <h2>Welcome to RYOT.CC</h2>
+            <button type="button" id="scrollButton">
+              <ion-icon name="chevron-down-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="socialsContainer" id="socials">
+        <a class="patreon" href="https://www.patreon.com/_RYOT_" type="_blank"
+          ><img
+            src="./assets/logos/Patreon Brand Assets/Patreon Logo/PNG/Digital-Patreon-Logo_Black.png"
+            alt=""
+          />
+          Patreon</a
+        >
+        <a class="kofi" href="https://ko-fi.com/ryot_" type="_blank"
+          ><img
+            src="./assets/logos/Kofi Brand Asset/Kofi_logo/PNG/kofi_s_logo_nolabel.png"
+            alt=""
+          />
+          Kofi</a
+        >
+        <a
+          class="steam"
+          href="https://steamcommunity.com/id/xryotx/"
+          type="_blank"
+          ><img
+            src="./assets/logos/Steam Branding/Steam_icon_logo_logotype.png"
+            alt=""
+          />
+          Steam</a
+        >
+        <a
+          class="vrchat"
+          href="https://vrchat.com/home/user/usr_a75371d8-1051-4246-ba62-d697c6bdc7e8"
+          type="_blank"
+          ><img src="./assets/logos/VRChat Branding/VRChat-Emblem.png" alt="" />
+          VRChat</a
+        >
+        <a class="twitter" href="https://twitter.com/ryot_x" type="_blank"
+          ><img
+            src="./assets/logos/Twitter logo/logo-white.png"
+            alt=""
+          />
+          X</a
+        >
+      </section>
+    </section>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      document
+        .getElementById("scrollButton")
+        .addEventListener("click", function () {
+          document
+            .getElementById("socials")
+            .scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
+  </body>
+</html>
