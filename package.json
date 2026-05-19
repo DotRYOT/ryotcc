@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "build": "workbox generateSW workbox-config.js"
+  },
+  "dependencies": {
+    "workbox-precaching": "^7.1.0"
+  }
+}

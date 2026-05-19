@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HOME | RYOT.CC</title>
+    <link rel="stylesheet" href="./css/index.min.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/RYOT_128.jpg"
+      type="image/x-icon"
+    />
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./sw.js");
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <a
+      href="https://codepen.io/MarkBoots/pen/LYjvEJj"
+      target="_blank"
+      class="code"
+      >Background</a
+    >
+    <section id="FullFrame">
+      <section class="mainContainer" id="main">
+        <div class="centerContainer">
+          <div class="container">
+            <img src="./assets/images/RYOT_PFP_2048.jpeg" alt="" />
+            <h2>Welcome to RYOT.CC</h2>
+          </div>
+        </div>
+      </section>
+      <section class="socialsContainer" id="socials">
+        <a
+          href="https://pixlshare.cc/profile/?p=RYOT"
+          class="pixlshare"
+          target="_blank"
+        >
+          <img
+            src="./assets/logos/pixlshare branding/pixlshareLogo_white_4k.png"
+            alt=""
+          />
+        </a>
+        <a href="https://github.com/DotRyot" class="github" target="_blank">
+          <img
+            src="./assets/logos/GitHub Logos/SVG/GitHub_Invertocat_Black.svg"
+            alt=""
+          />
+        </a>
+        <a href="https://codeberg.org/RYOT" class="codeberg" target="_blank">
+          <img
+            src="./assets/logos/codeberg/icon/png/codeberg-logo_icon_white-64x64.png"
+            alt=""
+          />
+        </a>
+        <a href="./portfolio/" class="ryotcc">
+          <img src="./assets/images/RYOT_1024.png" alt="" />
+        </a>
+        <a
+          class="patreon"
+          href="https://www.patreon.com/_RYOT_"
+          target="_blank"
+        >
+          <img
+            src="./assets/logos/Patreon Brand Assets/Patreon Logo/PNG/Digital-Patreon-Logo_Black.png"
+            alt=""
+          />
+        </a>
+        <a class="kofi" href="https://ko-fi.com/ryot_" target="_blank">
+          <img
+            src="./assets/logos/Kofi Brand Asset/Kofi_logo/PNG/kofi_s_logo_nolabel.png"
+            alt=""
+          />
+        </a>
+        <a
+          class="steam"
+          href="https://steamcommunity.com/id/xryotx/"
+          target="_blank"
+        >
+          <img
+            src="./assets/logos/Steam Branding/Steam_icon_logo_logotype.png"
+            alt=""
+          />
+        </a>
+        <a
+          class="vrchat"
+          href="https://vrchat.com/home/user/usr_a75371d8-1051-4246-ba62-d697c6bdc7e8"
+          target="_blank"
+        >
+          <img src="./assets/logos/VRChat Branding/VRChat-Emblem.png" alt="" />
+        </a>
+        <a class="twitter" href="https://twitter.com/ryot_x" type="_blank">
+          <img src="./assets/logos/Twitter logo/logo-white.png" alt="" />
+        </a>
+      </section>
+    </section>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script>
+      document.body.addEventListener("pointermove", (e) => {
+        const { currentTarget: el, clientX: x, clientY: y } = e;
+        const {
+          top: t,
+          left: l,
+          width: w,
+          height: h,
+        } = el.getBoundingClientRect();
+        el.style.setProperty("--posX", x - l - w / 2);
+        el.style.setProperty("--posY", y - t - h / 2);
+      });
+
+      document.getElementById("scrollButton", function () {
+        document
+          .getElementById("socials")
+          .scrollIntoView({ behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>
