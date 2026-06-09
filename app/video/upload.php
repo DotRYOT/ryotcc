@@ -68,6 +68,36 @@ if (!in_array($ext, $allowedExts)) {
   exit;
 }
 
+// Resolve expiry tier
+$tiers = EXPIRY_TIERS;
+$tierKey = isset($_POST['expiry']) ? trim($_POST['expiry']) : '24h';
+if (!array_key_exists($tierKey, $tiers)) {
+  http_response_code(400);
+  echo json_encode(['success' => false, 'error' => 'Invalid expiry option.']);
+  exit;
+}
+$tier = $tiers[$tierKey];
+
+// Enforce per-tier video limit
+if ($tier['limit'] !== null) {
+  $now = time();
+  $activeCount = 0;
+  $metaFiles = glob($metaDir . '*.json') ?: [];
+  foreach ($metaFiles as $mf) {
+    $md = json_decode(file_get_contents($mf), true);
+    if (!$md) continue;
+    $exp = isset($md['expires_at']) ? (int) $md['expires_at'] : 0;
+    if ($exp > $now && isset($md['expiry_tier']) && $md['expiry_tier'] === $tierKey) {
+      $activeCount++;
+    }
+  }
+  if ($activeCount >= $tier['limit']) {
+    http_response_code(429);
+    echo json_encode(['success' => false, 'error' => 'The "' . $tier['label'] . '" tier is full (' . $tier['limit'] . ' videos max). Choose a shorter expiry.']);
+    exit;
+  }
+}
+
 // Generate unique ID
 $id = bin2hex(random_bytes(16));
 $safeOrigName = preg_replace('/[^a-zA-Z0-9._-]/', '_', basename($file['name']));
@@ -82,7 +112,7 @@ if (!move_uploaded_file($file['tmp_name'], $destPath)) {
 }
 
 // Save metadata
-$expiresAtTs = time() + EXPIRY_SECONDS;
+$expiresAtTs = time() + $tier['seconds'];
 $meta = [
   'id' => $id,
   'original_name' => $safeOrigName,
@@ -92,6 +122,7 @@ $meta = [
   'size' => $file['size'],
   'uploaded_at' => time(),
   'expires_at' => $expiresAtTs,
+  'expiry_tier' => $tierKey,
 ];
 
 file_put_contents($metaDir . $id . '.json', json_encode($meta, JSON_PRETTY_PRINT));
@@ -99,5 +130,6 @@ file_put_contents($metaDir . $id . '.json', json_encode($meta, JSON_PRETTY_PRINT
 echo json_encode([
   'success' => true,
   'id' => $id,
-  'expires_at' => $expiresAtTs * 1000,
+  'expires_at' => $expiresAtTs,
+  'expiry_tier' => $tierKey,
 ]);

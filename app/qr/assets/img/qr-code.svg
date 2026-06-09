@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="QR Code logo">
+  <rect width="128" height="128" rx="20" fill="#111" />
+  <g fill="#fff">
+    <rect x="16" y="16" width="32" height="32" rx="6" />
+    <rect x="80" y="16" width="32" height="32" rx="6" />
+    <rect x="16" y="80" width="32" height="32" rx="6" />
+  </g>
+  <g fill="#fff">
+    <rect x="56" y="56" width="16" height="16" />
+    <rect x="88" y="56" width="24" height="24" />
+    <rect x="56" y="88" width="24" height="24" />
+    <rect x="80" y="88" width="16" height="16" />
+    <rect x="32" y="56" width="16" height="16" />
+    <rect x="56" y="32" width="16" height="16" />
+  </g>
+</svg>
