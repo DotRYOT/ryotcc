@@ -1,8 +1,14 @@
 {
   "scripts": {
-    "build": "workbox generateSW workbox-config.js"
+    "build": "workbox generateSW workbox-config.js",
+    "dev": "wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "workbox-precaching": "^7.1.0"
+  },
+  "devDependencies": {
+    "workbox-cli": "^7.1.0",
+    "wrangler": "^4.0.0"
   }
 }
